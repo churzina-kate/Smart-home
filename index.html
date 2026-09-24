@@ -1,0 +1,3023 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iOS Smart Home Concept</title>
+    <meta name="description" content="High-fidelity iOS home screen mockup for a smart home app concept with SF Symbols and liquid glass UI." />
+    <meta property="og:title" content="iOS Smart Home Concept" />
+    <meta property="og:description" content="High-fidelity iOS home screen mockup for a smart home app concept with SF Symbols and liquid glass UI." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <style>
+      /* --- Reset & Typography --- */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+        --color-bg-canvas: #090A0D;
+        --color-phone-bg: #0B0B0F;
+        --color-primary: #FFFFFF;
+        --color-secondary: rgba(235, 235, 245, 0.60);
+        --color-tertiary: rgba(235, 235, 245, 0.32);
+        --color-quaternary: rgba(235, 235, 245, 0.18);
+        --color-glass-fill: rgba(255, 255, 255, 0.075);
+        --color-glass-fill-subtle: rgba(255, 255, 255, 0.05);
+        --color-glass-border: rgba(255, 255, 255, 0.12);
+        --color-glass-highlight: rgba(255, 255, 255, 0.18);
+        --color-system-green: #30D158;
+        --color-system-orange: #FF9F0A;
+        --color-system-blue: #046D38;
+        --color-system-red: #FF453A;
+        --color-system-indigo: #5E5CE6;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: var(--color-bg-canvas);
+        font-family: var(--font-stack);
+        color: var(--color-primary);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 24px 80px;
+        overflow-x: auto;
+      }
+
+      /* Studio Stage & Header */
+      .stage-header {
+        text-align: center;
+        margin-bottom: 32px;
+        max-width: 820px;
+      }
+
+      .stage-title {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        color: var(--color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .stage-subtitle {
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--color-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .stage-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 2px 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        font-size: 11px;
+        color: var(--color-secondary);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .devices-stage {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 56px;
+        flex-wrap: wrap;
+      }
+
+      .frame-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .frame-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 393px;
+        padding: 0 4px;
+      }
+
+      .frame-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--color-secondary);
+        letter-spacing: -0.01em;
+      }
+
+      .frame-dimensions {
+        font-size: 12px;
+        color: var(--color-tertiary);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* --- Phone Chassis & Screen Frame --- */
+      .phone-shell {
+        position: relative;
+        width: 393px;
+        height: 852px;
+        background-color: var(--color-phone-bg);
+        border-radius: 54px;
+        box-shadow: 
+          0 0 0 12px #1E1F24,
+          0 0 0 13px rgba(255, 255, 255, 0.1),
+          0 24px 64px -8px rgba(0, 0, 0, 0.8),
+          0 8px 24px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        user-select: none;
+        isolation: isolate;
+      }
+
+      .phone-shell.full-height-export {
+        height: auto;
+        min-height: 852px;
+        border-radius: 44px;
+        box-shadow: 
+          0 0 0 1px rgba(255, 255, 255, 0.12),
+          0 24px 64px -8px rgba(0, 0, 0, 0.8);
+      }
+
+      /* Ambient Refraction Glows */
+      .glow-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .glow-orb-blue {
+        position: absolute;
+        top: -60px;
+        left: -40px;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(4, 109, 56, 0.28) 0%, rgba(4, 109, 56, 0) 70%);
+        filter: blur(50px);
+      }
+
+      .glow-orb-amber {
+        position: absolute;
+        top: 360px;
+        right: -60px;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 159, 10, 0.11) 0%, rgba(255, 159, 10, 0) 70%);
+        filter: blur(55px);
+      }
+
+      .glow-orb-indigo {
+        position: absolute;
+        bottom: 120px;
+        left: -30px;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(94, 92, 230, 0.10) 0%, rgba(94, 92, 230, 0) 70%);
+        filter: blur(50px);
+      }
+
+      /* --- Liquid Glass Component System --- */
+      .glass-card {
+        position: relative;
+        background: var(--color-glass-fill);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border: 1px solid var(--color-glass-border);
+        box-shadow: 
+          inset 0 1px 0 0 var(--color-glass-highlight),
+          0 6px 20px rgba(0, 0, 0, 0.32);
+        border-radius: 22px;
+      }
+
+      .glass-pill {
+        position: relative;
+        background: var(--color-glass-fill);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border: 1px solid var(--color-glass-border);
+        box-shadow: inset 0 1px 0 0 var(--color-glass-highlight);
+        border-radius: 9999px;
+      }
+
+      /* Native iOS Typography Scale */
+      .typo-large-title {
+        font-size: 34px;
+        line-height: 41px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .typo-title-3 {
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      .typo-headline {
+        font-size: 17px;
+        line-height: 22px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      .typo-body {
+        font-size: 17px;
+        line-height: 22px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+
+      .typo-subheadline {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+
+      .typo-footnote {
+        font-size: 13px;
+        line-height: 18px;
+        font-weight: 400;
+        letter-spacing: -0.005em;
+      }
+
+      .typo-caption {
+        font-size: 11px;
+        line-height: 14px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
+
+      /* --- Status Bar --- */
+      .status-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 54px;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 30;
+        pointer-events: none;
+      }
+
+      .status-time {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #FFFFFF;
+        padding-top: 14px;
+      }
+
+      .dynamic-island {
+        position: absolute;
+        top: 11px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 126px;
+        height: 37px;
+        background-color: #000000;
+        border-radius: 20px;
+        z-index: 31;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 10px;
+        box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.05);
+      }
+
+      .dynamic-island-sensor {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #08080C;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .dynamic-island-cam {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, #1A2640 0%, #080B12 80%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .status-icons {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding-top: 14px;
+        color: #FFFFFF;
+      }
+
+      /* --- App Container & Scroll Management --- */
+      .app-viewport {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+      }
+
+      .full-height-export .app-viewport {
+        height: auto;
+      }
+
+      .scroll-container {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-top: 54px;
+        padding-bottom: 116px; /* clearance for floating tab bar */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .scroll-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .full-height-export .scroll-container {
+        overflow-y: visible;
+        padding-bottom: 24px;
+      }
+
+      /* Screen Padding */
+      .screen-padding {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      /* --- Section 2: Header Row --- */
+      .header-row {
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 4px;
+      }
+
+      .home-switcher-btn {
+        height: 44px;
+        padding: 0 14px 0 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--color-glass-fill-subtle);
+        border: 1px solid var(--color-glass-border);
+        border-radius: 22px;
+        color: var(--color-primary);
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        cursor: pointer;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: background 0.15s ease, transform 0.1s ease;
+      }
+
+      .home-switcher-btn:active {
+        transform: scale(0.97);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .icon-btn-44 {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-glass-fill-subtle);
+        border: 1px solid var(--color-glass-border);
+        border-radius: 50%;
+        color: var(--color-primary);
+        cursor: pointer;
+        position: relative;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+      }
+
+      .icon-btn-44:active {
+        transform: scale(0.95);
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .icon-btn-44.active-state {
+        background: rgba(255, 255, 255, 0.22);
+        border-color: rgba(255, 255, 255, 0.35);
+        color: #FFFFFF;
+      }
+
+      .home-switcher-btn.active-state {
+        background: rgba(255, 255, 255, 0.22);
+        border-color: rgba(255, 255, 255, 0.35);
+        color: #FFFFFF;
+      }
+
+      /* iOS Native UIMenu Popover Menus (matching Apple Home Reference Dark Mode) */
+      .ios-menu-backdrop {
+        position: absolute;
+        inset: 0;
+        z-index: 990;
+        display: none;
+        background: transparent;
+      }
+
+      .ios-menu-backdrop.active {
+        display: block;
+      }
+
+      .ios-native-menu {
+        position: absolute;
+        width: 252px;
+        background: rgba(30, 30, 34, 0.88);
+        backdrop-filter: blur(50px) saturate(220%);
+        -webkit-backdrop-filter: blur(50px) saturate(220%);
+        border-radius: 16px;
+        box-shadow: 
+          0 20px 48px rgba(0, 0, 0, 0.72),
+          0 4px 14px rgba(0, 0, 0, 0.4),
+          inset 0 0.5px 0 0 rgba(255, 255, 255, 0.22),
+          inset 0 -0.5px 0 0 rgba(0, 0, 0, 0.5);
+        border: 0.5px solid rgba(255, 255, 255, 0.16);
+        padding: 4px 0;
+        overflow: hidden;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: scale(0.92) translateY(-6px);
+        transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+      }
+
+      .ios-native-menu.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: scale(1) translateY(0);
+      }
+
+      #home-menu-popover {
+        top: 50px;
+        left: 0;
+        transform-origin: 30px 0%;
+      }
+
+      #add-menu-popover {
+        top: 50px;
+        right: 48px;
+        transform-origin: calc(100% - 22px) 0%;
+      }
+
+      #options-menu-popover {
+        top: 50px;
+        right: 0;
+        transform-origin: calc(100% - 22px) 0%;
+      }
+
+      .ios-menu-item {
+        width: 100%;
+        min-height: 44px;
+        height: auto;
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        outline: none;
+        transition: background 0.12s ease;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+      }
+
+      .ios-menu-item:hover, .ios-menu-item:focus-visible {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .ios-menu-item:active {
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      .ios-menu-item-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .ios-menu-title {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #FFFFFF;
+        letter-spacing: -0.015em;
+        line-height: 1.25;
+      }
+
+      .ios-menu-sub {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(235, 235, 245, 0.65);
+        line-height: 1.25;
+        margin-top: 2px;
+      }
+
+      .ios-menu-divider {
+        height: 0.5px;
+        background: rgba(255, 255, 255, 0.13);
+        margin: 4px 0;
+        width: 100%;
+      }
+
+      .ios-menu-item svg {
+        flex-shrink: 0;
+        color: #FFFFFF;
+      }
+
+      .ios-menu-item svg.ios-menu-check {
+        color: var(--color-system-blue);
+      }
+
+      .badge-dot {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        min-width: 17px;
+        height: 17px;
+        padding: 0 4px;
+        background-color: var(--color-system-red);
+        color: #FFFFFF;
+        font-size: 10.5px;
+        font-weight: 700;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        border: 2px solid var(--color-phone-bg);
+      }
+
+      /* In-App Action / Edit Mode Banner */
+      .edit-mode-banner {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(30, 30, 34, 0.92);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+        border-radius: 14px;
+        padding: 8px 14px;
+        margin-top: 10px;
+        margin-bottom: 6px;
+        animation: fadeIn 0.2s ease;
+      }
+
+      .edit-mode-banner.active {
+        display: flex;
+      }
+
+      .edit-mode-text {
+        font-size: 13px;
+        font-weight: 600;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .edit-done-btn {
+        background: var(--color-system-blue);
+        border: none;
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* --- Section 3: Greeting --- */
+      .greeting-section {
+        margin-top: 14px;
+        margin-bottom: 16px;
+      }
+
+      .greeting-title {
+        color: var(--color-primary);
+      }
+
+      /* --- Section 4: AI Search Field --- */
+      .search-container {
+        margin-bottom: 16px;
+      }
+
+      .ai-search-field {
+        width: 100%;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 8px 0 14px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid var(--color-glass-border);
+        border-radius: 23px;
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        box-shadow: inset 0 1px 0 0 var(--color-glass-highlight);
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .ai-search-field:focus-within {
+        border-color: rgba(4, 109, 56, 0.6);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .ai-search-icon {
+        color: var(--color-system-blue);
+        flex-shrink: 0;
+      }
+
+      .ai-search-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--color-primary);
+        font-family: inherit;
+        font-size: 15px;
+        letter-spacing: -0.01em;
+      }
+
+      .ai-search-input::placeholder {
+        color: var(--color-secondary);
+      }
+
+      .mic-btn {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        color: var(--color-secondary);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: color 0.15s ease;
+      }
+
+      .mic-btn:hover {
+        color: var(--color-primary);
+      }
+
+      /* --- Section 5: Home Summary Card --- */
+      .summary-card {
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+
+      .summary-status-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .status-pulse-dot {
+        position: relative;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: var(--color-system-green);
+        box-shadow: 0 0 10px var(--color-system-green);
+      }
+
+      .status-pulse-dot::after {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background-color: rgba(48, 209, 88, 0.35);
+        animation: pulse-ring 2.4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+      }
+
+      @keyframes pulse-ring {
+        0% { transform: scale(0.8); opacity: 1; }
+        100% { transform: scale(2.2); opacity: 0; }
+      }
+
+      .summary-headline {
+        color: var(--color-primary);
+      }
+
+      .summary-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        text-align: center;
+      }
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .stat-icon-wrap {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-secondary);
+        margin-bottom: 1px;
+      }
+
+      .stat-value {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--color-primary);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .stat-label {
+        font-size: 11.5px;
+        color: var(--color-secondary);
+        letter-spacing: -0.005em;
+        white-space: nowrap;
+      }
+
+      .summary-divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+        margin: 14px 0 12px;
+      }
+
+      .secondary-home-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background 0.15s ease;
+      }
+
+      .secondary-home-row:active {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .secondary-home-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .secondary-home-icon {
+        color: var(--color-secondary);
+        flex-shrink: 0;
+      }
+
+      .secondary-home-text {
+        color: var(--color-secondary);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .alert-dot-orange {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--color-system-orange);
+        box-shadow: 0 0 6px var(--color-system-orange);
+        flex-shrink: 0;
+      }
+
+      .secondary-home-right {
+        color: var(--color-tertiary);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      /* --- Section 6: AI Suggestion Card --- */
+      .suggestion-card {
+        padding: 16px;
+        margin-bottom: 24px;
+        background: linear-gradient(135deg, rgba(4, 109, 56, 0.18) 0%, rgba(94, 92, 230, 0.08) 100%), rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(4, 109, 56, 0.32);
+        box-shadow: 
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+          0 8px 24px rgba(0, 0, 0, 0.35);
+        border-radius: 22px;
+        transition: transform 0.2s ease, opacity 0.25s ease;
+      }
+
+      .suggestion-card.card-cleaning {
+        background: linear-gradient(135deg, rgba(4, 109, 56, 0.18) 0%, rgba(94, 92, 230, 0.08) 100%), rgba(255, 255, 255, 0.06);
+        border-color: rgba(4, 109, 56, 0.32);
+      }
+
+      .suggestion-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .suggestion-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--color-system-blue);
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .suggestion-tag.tag-orange {
+        color: var(--color-system-orange);
+      }
+
+      .suggestion-tag.tag-green {
+        color: var(--color-system-green);
+      }
+
+      .suggestion-count-pill {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-secondary);
+        background: rgba(255, 255, 255, 0.08);
+        padding: 2px 7px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.01em;
+      }
+
+      .suggestion-headline {
+        color: var(--color-primary);
+        margin-bottom: 4px;
+        font-size: 16px;
+        line-height: 21px;
+      }
+
+      .suggestion-body {
+        color: var(--color-secondary);
+        margin-bottom: 14px;
+        font-size: 13px;
+        line-height: 18px;
+      }
+
+      .suggestion-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .suggestion-btn-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btn-primary-pill {
+        height: 40px;
+        padding: 0 18px;
+        background: var(--color-system-blue);
+        color: #FFFFFF;
+        font-family: inherit;
+        font-size: 14.5px;
+        font-weight: 600;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(4, 109, 56, 0.45);
+        transition: transform 0.1s ease, filter 0.15s ease, background 0.2s ease;
+      }
+
+      .btn-primary-pill:active {
+        transform: scale(0.97);
+        filter: brightness(0.9);
+      }
+
+      .btn-secondary-ghost {
+        height: 40px;
+        padding: 0 14px;
+        background: transparent;
+        color: var(--color-secondary);
+        font-family: inherit;
+        font-size: 14.5px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        transition: color 0.15s ease, background 0.15s ease;
+      }
+
+      .btn-secondary-ghost:hover {
+        color: var(--color-primary);
+      }
+
+      .btn-secondary-ghost:active {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .full-height-export .suggestions-carousel {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow: visible;
+        scroll-snap-type: none;
+      }
+
+      .full-height-export .suggestion-card {
+        flex: 1 1 auto;
+        width: 100%;
+        min-height: auto;
+      }
+
+      /* --- Section 7: Scenes Section (4 in a row) --- */
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .section-link {
+        background: none;
+        border: none;
+        color: var(--color-system-blue);
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 6px 2px;
+      }
+
+      .scenes-card {
+        padding: 16px 10px 14px;
+        margin-bottom: 24px;
+      }
+
+      .scenes-grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        align-items: flex-start;
+      }
+
+      .scene-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 18px;
+        transition: transform 0.12s ease;
+        font-family: inherit;
+        color: inherit;
+        width: 100%;
+      }
+
+      .scene-button:active {
+        transform: scale(0.95);
+      }
+
+      .scene-circle {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(235, 235, 245, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        transition: background 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+                    color 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+                    box-shadow 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+                    border-color 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+                    transform 0.15s ease;
+      }
+
+      .scene-name {
+        margin-top: 8px;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--color-secondary);
+        transition: color 0.15s ease, font-weight 0.15s ease;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      /* Active State: Warm amber illuminated circle matching light device style with warm glow & bold label */
+      .scene-button.active .scene-circle {
+        background: var(--color-system-orange);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #FFFFFF;
+        box-shadow: 0 4px 20px rgba(255, 159, 10, 0.48),
+                    0 1px 4px rgba(0, 0, 0, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .scene-button.active .scene-name {
+        color: #FFFFFF;
+        font-weight: 600;
+      }
+
+      /* --- Section 8: Favorites Section --- */
+      .favorites-section {
+        margin-top: 24px;
+      }
+
+      .devices-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .device-card {
+        height: 154px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .device-card:active {
+        transform: scale(0.97);
+      }
+
+      /* State "ON" cards visual styling */
+      .device-card.is-on-blue {
+        background: linear-gradient(145deg, rgba(4, 109, 56, 0.24) 0%, rgba(255, 255, 255, 0.06) 100%);
+        border-color: rgba(4, 109, 56, 0.45);
+        box-shadow: 
+          inset 0 0 24px rgba(4, 109, 56, 0.22),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+          0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .device-card.is-on-amber {
+        background: linear-gradient(145deg, rgba(255, 159, 10, 0.15) 0%, rgba(255, 255, 255, 0.06) 100%);
+        border-color: rgba(255, 159, 10, 0.35);
+        box-shadow: 
+          inset 0 0 24px rgba(255, 159, 10, 0.15),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+          0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .card-top-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+
+      .device-icon-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-secondary);
+        transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .is-on-blue .device-icon-box {
+        color: #FFFFFF;
+        background: var(--color-system-blue);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 16px rgba(4, 109, 56, 0.6);
+      }
+
+      .is-on-amber .device-icon-box {
+        color: #FFFFFF;
+        background: var(--color-system-orange);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 16px rgba(255, 159, 10, 0.5);
+      }
+
+      /* Circular On-Off (Power) Button from Reference (Transparent Glass in Off State) */
+      .power-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        color: rgba(235, 235, 245, 0.65);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+        cursor: pointer;
+        transition: transform 0.15s ease, background 0.2s cubic-bezier(0.25, 1, 0.5, 1), color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        flex-shrink: 0;
+        padding: 0;
+        outline: none;
+      }
+
+      .power-btn:hover {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.28);
+        color: #FFFFFF;
+        transform: scale(1.05);
+      }
+
+      .power-btn:active {
+        transform: scale(0.92);
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .power-btn .power-icon {
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* Active State: Illuminates with the device accent color and matching glow */
+      .power-btn.active-blue,
+      .is-on-blue .power-btn {
+        background: var(--color-system-blue);
+        color: #FFFFFF;
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 16px rgba(4, 109, 56, 0.65), 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .power-btn.active-amber,
+      .is-on-amber .power-btn {
+        background: var(--color-system-orange);
+        color: #FFFFFF;
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 16px rgba(255, 159, 10, 0.6), 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      /* iOS Style Toggle Switch */
+      .ios-toggle {
+        width: 44px;
+        height: 28px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.16);
+        position: relative;
+        padding: 2px;
+        transition: background 0.2s ease;
+      }
+
+      .ios-toggle::after {
+        content: "";
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #FFFFFF;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      .ios-toggle.active-blue {
+        background: var(--color-system-blue);
+      }
+
+      .ios-toggle.active-blue::after {
+        transform: translateX(16px);
+      }
+
+      .ios-toggle.active-amber {
+        background: var(--color-system-orange);
+      }
+
+      .ios-toggle.active-amber::after {
+        transform: translateX(16px);
+      }
+
+      .ios-toggle.active-green {
+        background: var(--color-system-green);
+      }
+
+      .ios-toggle.active-green::after {
+        transform: translateX(16px);
+      }
+
+      /* Lock Badge */
+      .status-pill-subtle {
+        padding: 4px 8px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--color-system-green);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* Camera Live Badge */
+      .live-pill {
+        padding: 3px 8px;
+        border-radius: 6px;
+        background: rgba(255, 69, 58, 0.16);
+        border: 1px solid rgba(255, 69, 58, 0.3);
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--color-system-red);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-transform: uppercase;
+      }
+
+      .live-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--color-system-red);
+        box-shadow: 0 0 6px var(--color-system-red);
+        animation: live-blink 1.4s ease-in-out infinite alternate;
+      }
+
+      @keyframes live-blink {
+        0% { opacity: 0.4; }
+        100% { opacity: 1; }
+      }
+
+      .card-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .card-title {
+        color: var(--color-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .card-meta {
+        color: var(--color-secondary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* --- Section 9: Floating Tab Bar (iOS 26 Liquid Glass) --- */
+      .tab-bar-container {
+        position: absolute;
+        bottom: 24px;
+        left: 16px;
+        right: 16px;
+        z-index: 40;
+        pointer-events: auto;
+      }
+
+      .full-height-export .tab-bar-container {
+        position: sticky;
+        bottom: 24px;
+        margin-top: 24px;
+        left: 16px;
+        right: 16px;
+      }
+
+      .floating-tab-bar {
+        height: 64px;
+        padding: 0 4px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
+        background: rgba(22, 23, 29, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 32px;
+        backdrop-filter: blur(32px) saturate(200%);
+        -webkit-backdrop-filter: blur(32px) saturate(200%);
+        box-shadow: 
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.28),
+          0 16px 36px rgba(0, 0, 0, 0.6);
+      }
+
+      .tab-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        height: 50px;
+        border-radius: 25px;
+        background: transparent;
+        border: none;
+        color: var(--color-secondary);
+        cursor: pointer;
+        position: relative;
+        transition: color 0.15s ease;
+        padding: 0 2px;
+      }
+
+      .tab-item.active {
+        color: var(--color-primary);
+        background: rgba(255, 255, 255, 0.11);
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+      }
+
+      .tab-icon {
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tab-label {
+        color: inherit;
+        font-size: 10.5px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+
+      /* --- Section 10: Home Indicator --- */
+      .home-indicator-bar {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 134px;
+        height: 5px;
+        background-color: #FFFFFF;
+        border-radius: 3px;
+        z-index: 45;
+        pointer-events: none;
+      }
+
+      .full-height-export .home-indicator-bar {
+        position: relative;
+        bottom: auto;
+        margin: 16px auto 10px;
+      }
+
+      /* SVG SF Symbols Stroke Definition */
+      .sf-icon {
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* Dropdown / Modal Preview */
+      .home-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 50;
+        display: none;
+        align-items: flex-end;
+        opacity: 0;
+        transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .home-modal-backdrop.open {
+        display: flex;
+        opacity: 1;
+      }
+
+      .home-bottom-sheet {
+        width: 100%;
+        max-height: 85%;
+        overflow-y: auto;
+        background: #191A22;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 30px 30px 0 0;
+        padding: 10px 18px 34px;
+        box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.6);
+        transform: translateY(12px);
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .home-modal-backdrop.open .home-bottom-sheet {
+        transform: translateY(0);
+      }
+
+      .sheet-handle {
+        width: 36px;
+        height: 5px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.3);
+        margin: 0 auto 12px;
+      }
+
+      .sheet-header-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+
+      .sheet-title {
+        font-size: 17px;
+        font-weight: 600;
+        color: #FFFFFF;
+        letter-spacing: -0.01em;
+      }
+
+      .sheet-done-btn {
+        background: none;
+        border: none;
+        color: var(--color-system-blue);
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 4px 8px;
+        margin-right: -8px;
+      }
+
+      .sheet-done-btn:active {
+        opacity: 0.7;
+      }
+
+      .sheet-subtitle-label {
+        font-size: 11.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--color-tertiary);
+        font-weight: 600;
+        margin: 12px 6px 8px;
+      }
+
+      .sheet-group-box {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .sheet-action-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        cursor: pointer;
+        transition: background 0.12s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .sheet-action-row:last-child {
+        border-bottom: none;
+      }
+
+      .sheet-action-row:active {
+        background: rgba(255, 255, 255, 0.09);
+      }
+
+      .action-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .action-icon-tile {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFFFFF;
+        flex-shrink: 0;
+      }
+
+      .tile-blue { background: #046D38; }
+      .tile-amber { background: #FF9F0A; }
+      .tile-green { background: #30D158; }
+      .tile-purple { background: #AF52DE; }
+      .tile-pink { background: #FF2D55; }
+      .tile-indigo { background: #5E5CE6; }
+      .tile-gray { background: #636366; }
+
+      .action-texts {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+
+      .action-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #FFFFFF;
+        letter-spacing: -0.01em;
+      }
+
+      .action-desc {
+        font-size: 12px;
+        color: var(--color-secondary);
+      }
+
+      .action-right-chevron {
+        color: var(--color-tertiary);
+        flex-shrink: 0;
+      }
+
+      .reorder-handle {
+        color: var(--color-tertiary);
+        cursor: grab;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+      }
+
+      .reorder-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 11px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .reorder-row:last-child {
+        border-bottom: none;
+      }
+
+      .home-item-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.05);
+        margin-bottom: 8px;
+        cursor: pointer;
+      }
+
+      .home-item-row.active {
+        border: 1px solid var(--color-system-blue);
+        background: rgba(4, 109, 56, 0.22);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Stage Header -->
+    <header class="stage-header">
+      <div class="stage-title">
+        <span>Smart Home iOS Concept</span>
+      </div>
+      <div class="stage-subtitle">
+        <span>Apple HIG Specification</span>
+        <span>·</span>
+        <span class="stage-tag">iPhone 15 / 16 (393 × 852 pt)</span>
+        <span>·</span>
+        <span>Liquid Glass Dark Theme</span>
+        <span>·</span>
+        <span class="stage-tag">Figma html.to.design Ready</span>
+      </div>
+    </header>
+
+    <!-- Side-by-Side Dual Viewport Stage -->
+    <main class="devices-stage">
+      
+      <!-- ================= FRAME 1: INTERACTIVE PHONE VIEWPORT (393x852) ================= -->
+      <section class="frame-wrapper" aria-label="Interactive Phone Frame">
+        <div class="frame-meta">
+          <span class="frame-label">Interactive Device Frame</span>
+          <span class="frame-dimensions">393 × 852 px</span>
+        </div>
+
+        <div class="phone-shell" id="phone-interactive">
+          <!-- Backdrop for iOS Native Popover Menus -->
+          <div class="ios-menu-backdrop" id="ios-menu-backdrop" onclick="closeAllMenus()"></div>
+
+          <!-- Ambient Refraction Glows -->
+          <div class="glow-layer" aria-hidden="true">
+            <div class="glow-orb-blue"></div>
+            <div class="glow-orb-amber"></div>
+            <div class="glow-orb-indigo"></div>
+          </div>
+
+          <!-- Dynamic Island -->
+          <div class="dynamic-island" aria-hidden="true">
+            <div class="dynamic-island-sensor"></div>
+            <div class="dynamic-island-cam"></div>
+          </div>
+
+          <!-- Status Bar (height 54) -->
+          <header class="status-bar" aria-label="iOS Status Bar">
+            <div class="status-time">9:41</div>
+            <div class="status-icons">
+              <!-- Cellular 4 bars -->
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor" class="sf-icon" aria-label="Cellular Signal">
+                <path d="M1 11h2V9H1v2zm4 0h2V6H5v5zm4 0h2V3H9v8zm4 0h2V0h-2v11z" fill="currentColor" stroke="none" />
+              </svg>
+              <!-- Wi-Fi -->
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" class="sf-icon" aria-label="Wi-Fi">
+                <path d="M8 11.5a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" fill="currentColor" stroke="none" />
+                <path d="M4.6 7.2a4.8 4.8 0 016.8 0" stroke-width="1.6" />
+                <path d="M2 4.4a8.5 8.5 0 0112 0" stroke-width="1.6" />
+                <path d="M0.2 1.8a11.2 11.2 0 0115.6 0" stroke-width="1.6" />
+              </svg>
+              <!-- Battery -->
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none" stroke="currentColor" class="sf-icon" aria-label="Battery 100%">
+                <rect x="0.8" y="0.8" width="20.4" height="10.4" rx="3.6" stroke="currentColor" stroke-width="1.4" />
+                <rect x="2.6" y="2.6" width="16.8" height="6.8" rx="2" fill="currentColor" stroke="none" />
+                <path d="M23 4.2v3.6c.7-.4 1.2-1 1.2-1.8s-.5-1.4-1.2-1.8z" fill="currentColor" stroke="none" />
+              </svg>
+            </div>
+          </header>
+
+          <!-- Main Scrollable App Container -->
+          <div class="app-viewport">
+            <div class="scroll-container screen-padding">
+              
+              <!-- Section 2: Header Row (height 44) -->
+              <div class="header-row">
+                <!-- Home Switcher Button -->
+                <button class="home-switcher-btn" id="home-switcher-trigger" aria-haspopup="true" aria-expanded="false" title="Switch Home" onclick="toggleHomeMenu(event)">
+                  <span>Apartment</span>
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" class="sf-icon">
+                    <path d="M1.5 2l4.5 4 4.5-4" />
+                  </svg>
+                </button>
+
+                <!-- Right Actions: Notifications, Add (+), Options (...) -->
+                <div class="header-actions">
+                  <!-- 1. Notifications -->
+                  <button class="icon-btn-44" title="Notifications" aria-label="Notifications (2 unread)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 01-3.46 0" />
+                    </svg>
+                    <span class="badge-dot">2</span>
+                  </button>
+
+                  <!-- 2. Add (+) Button -->
+                  <button class="icon-btn-44" id="add-btn-trigger" title="Add accessories, scenes, automations, rooms, or people" aria-label="Add" onclick="toggleAddMenu(event)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+
+                  <!-- 3. Options (...) Button -->
+                  <button class="icon-btn-44" id="options-btn-trigger" title="Customize Home Screen & Options" aria-label="Home Options" onclick="toggleOptionsMenu(event)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <circle cx="5" cy="12" r="2" fill="currentColor" stroke="none" />
+                      <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+                      <circle cx="19" cy="12" r="2" fill="currentColor" stroke="none" />
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- 1. Home Switcher Popover Menu (Choice between Apartment and Country house) -->
+                <div class="ios-native-menu" id="home-menu-popover" role="menu" aria-label="Home Switcher">
+                  <button class="ios-menu-item" onclick="selectHome('Apartment')" role="menuitem">
+                    <div class="ios-menu-item-text">
+                      <span class="ios-menu-title">Apartment</span>
+                      <span class="ios-menu-sub">Primary residence</span>
+                    </div>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-system-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ios-menu-check check-apartment">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="selectHome('Country house')" role="menuitem">
+                    <div class="ios-menu-item-text">
+                      <span class="ios-menu-title">Country house</span>
+                      <span class="ios-menu-sub" style="color: var(--color-system-orange);">Door sensor battery low</span>
+                    </div>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-system-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ios-menu-check check-country" style="display: none;">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="handleItemAdd('New Home')" role="menuitem">
+                    <span class="ios-menu-title">New Home</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- 2. Add (+) Popover Menu (matching Reference 1) -->
+                <div class="ios-native-menu" id="add-menu-popover" role="menu" aria-label="Add to Home">
+                  <button class="ios-menu-item" onclick="handleItemAdd('Accessory')" role="menuitem">
+                    <span class="ios-menu-title">Add Accessory</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 18h6" />
+                      <path d="M10 22h4" />
+                      <path d="M12 2a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2z" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="handleItemAdd('Scene')" role="menuitem">
+                    <span class="ios-menu-title">Add Scene</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
+                      <path d="M19 3v4" />
+                      <path d="M21 5h-4" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="handleItemAdd('Automation')" role="menuitem">
+                    <span class="ios-menu-title">Add Automation</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <polyline points="12 7 12 12 15 15" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="handleItemAdd('Room')" role="menuitem">
+                    <span class="ios-menu-title">Add Room</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="3" />
+                      <path d="M3 15h18" />
+                      <path d="M15 15v6" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="handleItemAdd('People')" role="menuitem">
+                    <span class="ios-menu-title">Add People</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="handleItemAdd('New Home')" role="menuitem">
+                    <span class="ios-menu-title">Add New Home</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- 3. Options (...) Popover Menu (matching Reference 2) -->
+                <div class="ios-native-menu" id="options-menu-popover" role="menu" aria-label="Home Options">
+                  <button class="ios-menu-item" onclick="handleItemAdd('Home Settings')" role="menuitem">
+                    <span class="ios-menu-title">Home Settings</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="3" />
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="startEditHomeScreen()" role="menuitem">
+                    <span class="ios-menu-title">Edit Home View</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                      <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                    </svg>
+                  </button>
+                  <div class="ios-menu-divider"></div>
+                  <button class="ios-menu-item" onclick="openReorderModal()" role="menuitem">
+                    <span class="ios-menu-title">Reorder Sections</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="4" y="3" width="16" height="6" rx="2" />
+                      <rect x="4" y="15" width="16" height="6" rx="2" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Live Edit Mode Banner -->
+              <div class="edit-mode-banner" id="edit-mode-banner">
+                <div class="edit-mode-text">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                    <path d="M12 20h9" />
+                    <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+                  </svg>
+                  <span>Customizing Home Screen</span>
+                </div>
+                <button class="edit-done-btn" onclick="toggleEditMode(false)">Done</button>
+              </div>
+
+              <!-- Section 3: Greeting -->
+              <section class="greeting-section" aria-label="Greeting">
+                <h1 class="typo-large-title greeting-title">Good morning, Anna</h1>
+              </section>
+
+              <!-- Section 4: AI Search Field -->
+              <div class="search-container">
+                <div class="ai-search-field">
+                  <!-- AI Sparkle Icon -->
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon ai-search-icon" aria-hidden="true">
+                    <path d="M12 2l2.4 6.8L21 11l-6.6 2.2L12 20l-2.4-6.8L3 11l6.6-2.2L12 2z" />
+                    <path d="M19 16l1 2.5L22.5 19.5 20 20.5 19 23l-1-2.5-2.5-1 2.5-1L19 16z" />
+                  </svg>
+                  <input type="text" class="ai-search-input" placeholder="Find or ask anything…" aria-label="AI Search & Assistant" />
+                  <button class="mic-btn" title="Voice Input" aria-label="Voice Input">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z" />
+                      <path d="M19 10v2a7 7 0 01-14 0v-2" />
+                      <line x1="12" y1="19" x2="12" y2="22" />
+                      <line x1="8" y1="22" x2="16" y2="22" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Section 5: Home Summary Card (Glass) -->
+              <article class="glass-card summary-card" aria-label="Home Summary">
+                <div class="summary-status-header">
+                  <div class="status-pulse-dot" aria-hidden="true"></div>
+                  <h2 class="typo-headline summary-headline">Everything's fine at home</h2>
+                </div>
+
+                <!-- 4 Compact Stats -->
+                <div class="summary-stats-grid">
+                  <div class="stat-item">
+                    <div class="stat-icon-wrap">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z" />
+                      </svg>
+                    </div>
+                    <span class="stat-value">22°</span>
+                    <span class="stat-label">Inside</span>
+                  </div>
+
+                  <div class="stat-item">
+                    <div class="stat-icon-wrap">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z" />
+                      </svg>
+                    </div>
+                    <span class="stat-value">45%</span>
+                    <span class="stat-label">Humidity</span>
+                  </div>
+
+                  <div class="stat-item">
+                    <div class="stat-icon-wrap">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M18.36 6.64a9 9 0 11-12.73 0M12 2v10" />
+                      </svg>
+                    </div>
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">Devices on</span>
+                  </div>
+
+                  <div class="stat-item">
+                    <div class="stat-icon-wrap">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                      </svg>
+                    </div>
+                    <span class="stat-value">3.2 kWh</span>
+                    <span class="stat-label">Today</span>
+                  </div>
+                </div>
+
+                <div class="summary-divider" role="separator"></div>
+
+                <!-- Secondary-home row (multi-home awareness) -->
+                <div class="secondary-home-row" id="secondary-home-row" role="button" tabindex="0" title="Switch Home" onclick="toggleSecondaryHome()">
+                  <div class="secondary-home-left">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon secondary-home-icon">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    </svg>
+                    <div class="typo-footnote secondary-home-text" id="secondary-home-label">
+                      <span>Country house · Door sensor battery low</span>
+                      <span class="alert-dot-orange" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                  <div class="secondary-home-right">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Section 6: AI Suggestion Card -->
+              <article class="glass-card suggestion-card card-cleaning" id="suggestion-card" aria-label="AI Routine Suggestion">
+                <div class="suggestion-header">
+                  <div class="suggestion-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <path d="M12 2l2.4 6.8L21 11l-6.6 2.2L12 20l-2.4-6.8L3 11l6.6-2.2L12 2z" />
+                      <path d="M19 16l1 2.5L22.5 19.5 20 20.5 19 23l-1-2.5-2.5-1 2.5-1L19 16z" />
+                    </svg>
+                    <span>SUGGESTION</span>
+                  </div>
+                </div>
+                <h3 class="typo-headline suggestion-headline">Start the vacuum while you're out?</h3>
+                <p class="typo-footnote suggestion-body">Apartment is empty. You usually start a quiet 35-min cleaning session on weekday mornings.</p>
+                <div class="suggestion-actions">
+                  <div class="suggestion-btn-group">
+                    <button class="btn-primary-pill" onclick="handleStartCleaning(this)">Start cleaning</button>
+                    <button class="btn-secondary-ghost" onclick="dismissCard(this)">Close</button>
+                  </div>
+                  <span class="suggestion-count-pill" title="5 more routines available">5 more</span>
+                </div>
+              </article>
+
+              <!-- Section 7: Scenes Section (4 in a row card) -->
+              <section class="scenes-section" aria-labelledby="scenes-heading">
+                <div class="section-header">
+                  <h2 class="typo-title-3" id="scenes-heading">Scenes</h2>
+                  <button class="section-link" onclick="startEditHomeScreen()">Edit</button>
+                </div>
+                
+                <div class="glass-card scenes-card">
+                  <div class="scenes-grid-4" role="group" aria-label="Home Scenes">
+                    <!-- 1. Awakening (Active) -->
+                    <button class="scene-button active" onclick="toggleScene(this)" aria-pressed="true" aria-label="Awakening scene">
+                      <div class="scene-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <circle cx="12" cy="12" r="4.2" />
+                          <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.28 5.28l1.56 1.56M17.16 17.16l1.56 1.56M5.28 18.72l1.56-1.56M17.16 6.84l1.56-1.56" />
+                        </svg>
+                      </div>
+                      <span class="scene-name">Awakening</span>
+                    </button>
+
+                    <!-- 2. Night -->
+                    <button class="scene-button" onclick="toggleScene(this)" aria-pressed="false" aria-label="Night scene">
+                      <div class="scene-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M20.5 13.5a8.5 8.5 0 01-10-10 9 9 0 1010 10z" />
+                        </svg>
+                      </div>
+                      <span class="scene-name">Night</span>
+                    </button>
+
+                    <!-- 3. Calm -->
+                    <button class="scene-button" onclick="toggleScene(this)" aria-pressed="false" aria-label="Calm scene">
+                      <div class="scene-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M12 2.8c-3.5 4.5-6.5 8.2-6.5 12a6.5 6.5 0 0013 0c0-3.8-3-7.5-6.5-12z" />
+                        </svg>
+                      </div>
+                      <span class="scene-name">Calm</span>
+                    </button>
+
+                    <!-- 4. Energetic -->
+                    <button class="scene-button" onclick="toggleScene(this)" aria-pressed="false" aria-label="Energetic scene">
+                      <div class="scene-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M13 2.5L5.5 13.5h6L10.5 22.5 19 11.5h-6l2.5-9z" />
+                        </svg>
+                      </div>
+                      <span class="scene-name">Energetic</span>
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 8: Favorites Section -->
+              <section class="favorites-section" aria-labelledby="favorites-heading">
+                <div class="section-header">
+                  <h2 class="typo-title-3" id="favorites-heading">Favorites</h2>
+                  <button class="section-link">Edit</button>
+                </div>
+
+                <div class="devices-grid">
+                  <!-- a. Air Conditioner (ON, Blue Glow) -->
+                  <article class="glass-card device-card is-on-blue" onclick="toggleDeviceCard(this, 'blue')" role="button" tabindex="0" aria-label="Air conditioner, Living room, Cooling to 23 degrees, On">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <rect x="2" y="4" width="20" height="12" rx="3" />
+                          <line x1="6" y1="12" x2="18" y2="12" />
+                          <path d="M7 16v3m5-3v3m5-3v3" />
+                        </svg>
+                      </div>
+                      <button class="power-btn active-blue" aria-label="Power Air Conditioner" title="Power" onclick="event.stopPropagation(); toggleDeviceCard(this.closest('.device-card'), 'blue');">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="power-icon">
+                          <path d="M12 2v10" />
+                          <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Air conditioner</h3>
+                      <p class="typo-footnote card-meta">Living room · Cooling to 23°</p>
+                    </div>
+                  </article>
+
+                  <!-- b. Desk Lamp (ON, Warm Amber Glow) -->
+                  <article class="glass-card device-card is-on-amber" onclick="toggleDeviceCard(this, 'amber')" role="button" tabindex="0" aria-label="Desk lamp, Office, 70%, On">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M9 3h6l3 7H6l3-7z" />
+                          <path d="M12 10v9" />
+                          <path d="M8 21h8" />
+                        </svg>
+                      </div>
+                      <button class="power-btn active-amber" aria-label="Power Desk Lamp" title="Power" onclick="event.stopPropagation(); toggleDeviceCard(this.closest('.device-card'), 'amber');">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="power-icon">
+                          <path d="M12 2v10" />
+                          <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Desk lamp</h3>
+                      <p class="typo-footnote card-meta">Office · 70%</p>
+                    </div>
+                  </article>
+
+                  <!-- c. Robot Vacuum (OFF, Docked) -->
+                  <article class="glass-card device-card" onclick="toggleDeviceCard(this, 'blue')" role="button" tabindex="0" aria-label="Robot vacuum, Docked, 92%, Off">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <circle cx="12" cy="12" r="9" />
+                          <circle cx="12" cy="12" r="3" />
+                          <path d="M12 3v3m0 12v3" />
+                        </svg>
+                      </div>
+                      <button class="power-btn" aria-label="Power Robot Vacuum" title="Power" onclick="event.stopPropagation(); toggleDeviceCard(this.closest('.device-card'), 'blue');">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="power-icon">
+                          <path d="M12 2v10" />
+                          <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Robot vacuum</h3>
+                      <p class="typo-footnote card-meta">Docked · 92%</p>
+                    </div>
+                  </article>
+
+                  <!-- d. Front Door (Locked) -->
+                  <article class="glass-card device-card" onclick="toggleLockCard(this)" role="button" tabindex="0" aria-label="Front door, Locked">
+                    <div class="card-top-row">
+                      <div class="device-icon-box" style="color: var(--color-system-green);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <rect x="4" y="11" width="16" height="11" rx="2" ry="2" />
+                          <path d="M7 11V7a5 5 0 0110 0v4" />
+                        </svg>
+                      </div>
+                      <div class="status-pill-subtle">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>Locked</span>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Front door</h3>
+                      <p class="typo-footnote card-meta">Hallway · Secure</p>
+                    </div>
+                  </article>
+
+                  <!-- e. Bedroom Light (OFF) -->
+                  <article class="glass-card device-card" onclick="toggleDeviceCard(this, 'amber')" role="button" tabindex="0" aria-label="Bedroom light, Off">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M9 18h6m-4 4h2" />
+                          <path d="M12 2a7 7 0 00-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                      <button class="power-btn" aria-label="Power Bedroom Light" title="Power" onclick="event.stopPropagation(); toggleDeviceCard(this.closest('.device-card'), 'amber');">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="power-icon">
+                          <path d="M12 2v10" />
+                          <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Bedroom light</h3>
+                      <p class="typo-footnote card-meta">Bedroom · Off</p>
+                    </div>
+                  </article>
+
+                  <!-- f. Entrance Camera (Live) -->
+                  <article class="glass-card device-card" onclick="alert('Opening Entrance camera stream…')" role="button" tabindex="0" aria-label="Entrance camera, Live stream">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <polygon points="23 7 16 12 23 17 23 7" />
+                          <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                        </svg>
+                      </div>
+                      <div class="live-pill">
+                        <div class="live-dot" aria-hidden="true"></div>
+                        <span>Live</span>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Entrance camera</h3>
+                      <p class="typo-footnote card-meta">Outdoor · No events</p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+            </div>
+          </div>
+
+          <!-- Section 9: Floating Tab Bar (iOS 26 Style Liquid Glass with 5 Tabs) -->
+          <nav class="tab-bar-container" aria-label="Primary Navigation">
+            <div class="floating-tab-bar">
+              <!-- Tab 1: Home (Selected) -->
+              <button class="tab-item active" onclick="switchTab(this)" aria-selected="true" aria-label="Home Tab">
+                <div class="tab-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                    <path d="M3 9.5L12 2.5l9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2v-11z" fill="currentColor" stroke="none" />
+                  </svg>
+                </div>
+                <span class="tab-label">Home</span>
+              </button>
+
+              <!-- Tab 2: Devices -->
+              <button class="tab-item" onclick="switchTab(this)" aria-selected="false" aria-label="Devices Tab">
+                <div class="tab-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                    <rect x="3" y="3" width="7" height="7" rx="2" />
+                    <rect x="14" y="3" width="7" height="7" rx="2" />
+                    <rect x="14" y="14" width="7" height="7" rx="2" />
+                    <rect x="3" y="14" width="7" height="7" rx="2" />
+                  </svg>
+                </div>
+                <span class="tab-label">Devices</span>
+              </button>
+
+              <!-- Tab 3: Scenes -->
+              <button class="tab-item" onclick="switchTab(this)" aria-selected="false" aria-label="Scenes Tab">
+                <div class="tab-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <span class="tab-label">Scenes</span>
+              </button>
+
+              <!-- Tab 4: Insights -->
+              <button class="tab-item" onclick="switchTab(this)" aria-selected="false" aria-label="Insights Tab">
+                <div class="tab-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                  </svg>
+                </div>
+                <span class="tab-label">Insights</span>
+              </button>
+
+              <!-- Tab 5: Settings -->
+              <button class="tab-item" onclick="switchTab(this)" aria-selected="false" aria-label="Settings Tab">
+                <div class="tab-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                  </svg>
+                </div>
+                <span class="tab-label">Settings</span>
+              </button>
+            </div>
+          </nav>
+
+          <!-- Section 10: Home Indicator -->
+          <div class="home-indicator-bar" aria-hidden="true"></div>
+
+          <!-- Bottom Sheet Modal: Reorder Sections -->
+          <div class="home-modal-backdrop" id="reorder-modal" onclick="closeReorderModal(event)">
+            <div class="home-bottom-sheet" onclick="event.stopPropagation()">
+              <div class="sheet-handle"></div>
+              <div class="sheet-header-bar">
+                <div class="sheet-title">Reorder Sections</div>
+                <button class="sheet-done-btn" onclick="closeReorderModal()">Done</button>
+              </div>
+
+              <div class="sheet-subtitle-label">Drag handle to reorder on Home screen</div>
+              <div class="sheet-group-box">
+                <div class="reorder-row">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="reorder-handle">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <line x1="4" y1="8" x2="20" y2="8" />
+                        <line x1="4" y1="16" x2="20" y2="16" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Home Status Summary</div>
+                      <div style="font-size: 11.5px; color: var(--color-secondary);">Overview cards & secondary homes</div>
+                    </div>
+                  </div>
+                  <div class="ios-toggle active-blue"></div>
+                </div>
+
+                <div class="reorder-row">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="reorder-handle">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <line x1="4" y1="8" x2="20" y2="8" />
+                        <line x1="4" y1="16" x2="20" y2="16" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div style="font-size: 15px; font-weight: 600; color: #FFFFFF;">AI Suggestions</div>
+                      <div style="font-size: 11.5px; color: var(--color-secondary);">Intelligent contextual actions</div>
+                    </div>
+                  </div>
+                  <div class="ios-toggle active-blue"></div>
+                </div>
+
+                <div class="reorder-row">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="reorder-handle">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <line x1="4" y1="8" x2="20" y2="8" />
+                        <line x1="4" y1="16" x2="20" y2="16" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Scenes</div>
+                      <div style="font-size: 11.5px; color: var(--color-secondary);">Leaving, Arriving, Evening, Night</div>
+                    </div>
+                  </div>
+                  <div class="ios-toggle active-blue"></div>
+                </div>
+
+                <div class="reorder-row">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="reorder-handle">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <line x1="4" y1="8" x2="20" y2="8" />
+                        <line x1="4" y1="16" x2="20" y2="16" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Favorite Accessories</div>
+                      <div style="font-size: 11.5px; color: var(--color-secondary);">Grid of priority smart devices</div>
+                    </div>
+                  </div>
+                  <div class="ios-toggle active-blue"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FRAME 2: FULL CONTENT HEIGHT FOR FIGMA HTML.TO.DESIGN ================= -->
+      <section class="frame-wrapper" aria-label="Full Content Scroll Export Frame">
+        <div class="frame-meta">
+          <span class="frame-label">Full Scroll View (Figma Export)</span>
+          <span class="frame-dimensions">393 × auto px</span>
+        </div>
+
+        <div class="phone-shell full-height-export" id="phone-full-export">
+          <!-- Ambient Refraction Glows -->
+          <div class="glow-layer" aria-hidden="true">
+            <div class="glow-orb-blue"></div>
+            <div class="glow-orb-amber"></div>
+            <div class="glow-orb-indigo"></div>
+          </div>
+
+          <!-- Dynamic Island -->
+          <div class="dynamic-island" aria-hidden="true">
+            <div class="dynamic-island-sensor"></div>
+            <div class="dynamic-island-cam"></div>
+          </div>
+
+          <!-- Status Bar -->
+          <header class="status-bar" aria-label="iOS Status Bar Full">
+            <div class="status-time">9:41</div>
+            <div class="status-icons">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor" class="sf-icon">
+                <path d="M1 11h2V9H1v2zm4 0h2V6H5v5zm4 0h2V3H9v8zm4 0h2V0h-2v11z" fill="currentColor" stroke="none" />
+              </svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" class="sf-icon">
+                <path d="M8 11.5a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" fill="currentColor" stroke="none" />
+                <path d="M4.6 7.2a4.8 4.8 0 016.8 0" stroke-width="1.6" />
+                <path d="M2 4.4a8.5 8.5 0 0112 0" stroke-width="1.6" />
+                <path d="M0.2 1.8a11.2 11.2 0 0115.6 0" stroke-width="1.6" />
+              </svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none" stroke="currentColor" class="sf-icon">
+                <rect x="0.8" y="0.8" width="20.4" height="10.4" rx="3.6" stroke="currentColor" stroke-width="1.4" />
+                <rect x="2.6" y="2.6" width="16.8" height="6.8" rx="2" fill="currentColor" stroke="none" />
+                <path d="M23 4.2v3.6c.7-.4 1.2-1 1.2-1.8s-.5-1.4-1.2-1.8z" fill="currentColor" stroke="none" />
+              </svg>
+            </div>
+          </header>
+
+          <!-- Main App Viewport (Full Height, No Overflow Clipping) -->
+          <div class="app-viewport">
+            <div class="scroll-container screen-padding">
+              
+              <!-- Header Row -->
+              <div class="header-row">
+                <div class="home-switcher-btn">
+                  <span>Apartment</span>
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" class="sf-icon">
+                    <path d="M1.5 2l4.5 4 4.5-4" />
+                  </svg>
+                </div>
+                <div class="header-actions">
+                  <div class="icon-btn-44" title="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 01-3.46 0" />
+                    </svg>
+                    <span class="badge-dot">2</span>
+                  </div>
+                  <div class="icon-btn-44" title="Add">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </div>
+                  <div class="icon-btn-44" title="Options">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <circle cx="5" cy="12" r="2" fill="currentColor" stroke="none" />
+                      <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+                      <circle cx="19" cy="12" r="2" fill="currentColor" stroke="none" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Greeting -->
+              <section class="greeting-section">
+                <h1 class="typo-large-title greeting-title">Good morning, Anna</h1>
+              </section>
+
+              <!-- AI Search Field -->
+              <div class="search-container">
+                <div class="ai-search-field">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon ai-search-icon">
+                    <path d="M12 2l2.4 6.8L21 11l-6.6 2.2L12 20l-2.4-6.8L3 11l6.6-2.2L12 2z" />
+                    <path d="M19 16l1 2.5L22.5 19.5 20 20.5 19 23l-1-2.5-2.5-1 2.5-1L19 16z" />
+                  </svg>
+                  <input type="text" class="ai-search-input" placeholder="Find or ask anything…" readonly value="Find or ask anything…" />
+                  <div class="mic-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z" />
+                      <path d="M19 10v2a7 7 0 01-14 0v-2" />
+                      <line x1="12" y1="19" x2="12" y2="22" />
+                      <line x1="8" y1="22" x2="16" y2="22" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Home Summary Card -->
+              <article class="glass-card summary-card">
+                <div class="summary-status-header">
+                  <div class="status-pulse-dot"></div>
+                  <h2 class="typo-headline summary-headline">Everything's fine at home</h2>
+                </div>
+
+                <div class="summary-stats-grid">
+                  <div class="stat-item">
+                    <div class="stat-icon-wrap">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z" />
+                      </svg>
+                    </div>
+                    <span class="stat-value">22°</span>
+                    <span class="stat-label">Inside</span>
+                  </div>
+
+                  <div class="stat-item">
+                    <div class="stat-icon-wrap">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z" />
+                      </svg>
+                    </div>
+                    <span class="stat-value">45%</span>
+                    <span class="stat-label">Humidity</span>
+                  </div>
+
+                  <div class="stat-item">
+                    <div class="stat-icon-wrap">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M18.36 6.64a9 9 0 11-12.73 0M12 2v10" />
+                      </svg>
+                    </div>
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">Devices on</span>
+                  </div>
+
+                  <div class="stat-item">
+                    <div class="stat-icon-wrap">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                      </svg>
+                    </div>
+                    <span class="stat-value">3.2 kWh</span>
+                    <span class="stat-label">Today</span>
+                  </div>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="secondary-home-row">
+                  <div class="secondary-home-left">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon secondary-home-icon">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    </svg>
+                    <div class="typo-footnote secondary-home-text">
+                      <span>Country house · Door sensor battery low</span>
+                      <span class="alert-dot-orange"></span>
+                    </div>
+                  </div>
+                  <div class="secondary-home-right">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Section 6: AI Suggestion Card -->
+              <article class="glass-card suggestion-card card-cleaning" aria-label="AI Routine Suggestion">
+                <div class="suggestion-header">
+                  <div class="suggestion-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                      <path d="M12 2l2.4 6.8L21 11l-6.6 2.2L12 20l-2.4-6.8L3 11l6.6-2.2L12 2z" />
+                      <path d="M19 16l1 2.5L22.5 19.5 20 20.5 19 23l-1-2.5-2.5-1 2.5-1L19 16z" />
+                    </svg>
+                    <span>SUGGESTION</span>
+                  </div>
+                </div>
+                <h3 class="typo-headline suggestion-headline">Start the vacuum while you're out?</h3>
+                <p class="typo-footnote suggestion-body">Apartment is empty. You usually start a quiet 35-min cleaning session on weekday mornings.</p>
+                <div class="suggestion-actions">
+                  <div class="suggestion-btn-group">
+                    <button class="btn-primary-pill">Start cleaning</button>
+                    <button class="btn-secondary-ghost">Close</button>
+                  </div>
+                  <span class="suggestion-count-pill">5 more</span>
+                </div>
+              </article>
+
+              <!-- Scenes Section (4 in a row card) -->
+              <section class="scenes-section">
+                <div class="section-header">
+                  <h2 class="typo-title-3">Scenes</h2>
+                  <span class="section-link">Edit</span>
+                </div>
+                <div class="glass-card scenes-card">
+                  <div class="scenes-grid-4">
+                    <div class="scene-button active">
+                      <div class="scene-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <circle cx="12" cy="12" r="4.2" />
+                          <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.28 5.28l1.56 1.56M17.16 17.16l1.56 1.56M5.28 18.72l1.56-1.56M17.16 6.84l1.56-1.56" />
+                        </svg>
+                      </div>
+                      <span class="scene-name">Awakening</span>
+                    </div>
+
+                    <div class="scene-button">
+                      <div class="scene-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M20.5 13.5a8.5 8.5 0 01-10-10 9 9 0 1010 10z" />
+                        </svg>
+                      </div>
+                      <span class="scene-name">Night</span>
+                    </div>
+
+                    <div class="scene-button">
+                      <div class="scene-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M12 2.8c-3.5 4.5-6.5 8.2-6.5 12a6.5 6.5 0 0013 0c0-3.8-3-7.5-6.5-12z" />
+                        </svg>
+                      </div>
+                      <span class="scene-name">Calm</span>
+                    </div>
+
+                    <div class="scene-button">
+                      <div class="scene-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M13 2.5L5.5 13.5h6L10.5 22.5 19 11.5h-6l2.5-9z" />
+                        </svg>
+                      </div>
+                      <span class="scene-name">Energetic</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Favorites Section -->
+              <section class="favorites-section">
+                <div class="section-header">
+                  <h2 class="typo-title-3">Favorites</h2>
+                  <span class="section-link">Edit</span>
+                </div>
+
+                <div class="devices-grid">
+                  <!-- a. Air Conditioner -->
+                  <article class="glass-card device-card is-on-blue">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <rect x="2" y="4" width="20" height="12" rx="3" />
+                          <line x1="6" y1="12" x2="18" y2="12" />
+                          <path d="M7 16v3m5-3v3m5-3v3" />
+                        </svg>
+                      </div>
+                      <div class="power-btn active-blue">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="power-icon">
+                          <path d="M12 2v10" />
+                          <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Air conditioner</h3>
+                      <p class="typo-footnote card-meta">Living room · Cooling to 23°</p>
+                    </div>
+                  </article>
+
+                  <!-- b. Desk Lamp -->
+                  <article class="glass-card device-card is-on-amber">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M9 3h6l3 7H6l3-7z" />
+                          <path d="M12 10v9" />
+                          <path d="M8 21h8" />
+                        </svg>
+                      </div>
+                      <div class="power-btn active-amber">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="power-icon">
+                          <path d="M12 2v10" />
+                          <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Desk lamp</h3>
+                      <p class="typo-footnote card-meta">Office · 70%</p>
+                    </div>
+                  </article>
+
+                  <!-- c. Robot Vacuum -->
+                  <article class="glass-card device-card">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <circle cx="12" cy="12" r="9" />
+                          <circle cx="12" cy="12" r="3" />
+                          <path d="M12 3v3m0 12v3" />
+                        </svg>
+                      </div>
+                      <div class="power-btn">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="power-icon">
+                          <path d="M12 2v10" />
+                          <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Robot vacuum</h3>
+                      <p class="typo-footnote card-meta">Docked · 92%</p>
+                    </div>
+                  </article>
+
+                  <!-- d. Front Door -->
+                  <article class="glass-card device-card">
+                    <div class="card-top-row">
+                      <div class="device-icon-box" style="color: var(--color-system-green);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <rect x="4" y="11" width="16" height="11" rx="2" ry="2" />
+                          <path d="M7 11V7a5 5 0 0110 0v4" />
+                        </svg>
+                      </div>
+                      <div class="status-pill-subtle">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>Locked</span>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Front door</h3>
+                      <p class="typo-footnote card-meta">Hallway · Secure</p>
+                    </div>
+                  </article>
+
+                  <!-- e. Bedroom Light -->
+                  <article class="glass-card device-card">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <path d="M9 18h6m-4 4h2" />
+                          <path d="M12 2a7 7 0 00-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                      <div class="power-btn">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="power-icon">
+                          <path d="M12 2v10" />
+                          <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Bedroom light</h3>
+                      <p class="typo-footnote card-meta">Bedroom · Off</p>
+                    </div>
+                  </article>
+
+                  <!-- f. Entrance Camera -->
+                  <article class="glass-card device-card">
+                    <div class="card-top-row">
+                      <div class="device-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                          <polygon points="23 7 16 12 23 17 23 7" />
+                          <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                        </svg>
+                      </div>
+                      <div class="live-pill">
+                        <div class="live-dot"></div>
+                        <span>Live</span>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <h3 class="typo-headline card-title">Entrance camera</h3>
+                      <p class="typo-footnote card-meta">Outdoor · No events</p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <!-- Sticky Tab Bar at bottom of full scroll (with 5 tabs) -->
+              <div class="tab-bar-container">
+                <div class="floating-tab-bar">
+                  <div class="tab-item active">
+                    <div class="tab-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M3 9.5L12 2.5l9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2v-11z" fill="currentColor" stroke="none" />
+                      </svg>
+                    </div>
+                    <span class="tab-label">Home</span>
+                  </div>
+                  <div class="tab-item">
+                    <div class="tab-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <rect x="3" y="3" width="7" height="7" rx="2" />
+                        <rect x="14" y="3" width="7" height="7" rx="2" />
+                        <rect x="14" y="14" width="7" height="7" rx="2" />
+                        <rect x="3" y="14" width="7" height="7" rx="2" />
+                      </svg>
+                    </div>
+                    <span class="tab-label">Devices</span>
+                  </div>
+                  <div class="tab-item">
+                    <div class="tab-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                    </div>
+                    <span class="tab-label">Scenes</span>
+                  </div>
+                  <div class="tab-item">
+                    <div class="tab-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                      </svg>
+                    </div>
+                    <span class="tab-label">Insights</span>
+                  </div>
+                  <div class="tab-item">
+                    <div class="tab-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                      </svg>
+                    </div>
+                    <span class="tab-label">Settings</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Home Indicator -->
+              <div class="home-indicator-bar"></div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Interactive Script for Testing/Demonstrating -->
+    <script>
+      // Toggle device state
+      function toggleDeviceCard(card, themeColor) {
+        const pBtn = card.querySelector('.power-btn');
+        const toggle = card.querySelector('.ios-toggle');
+        const meta = card.querySelector('.card-meta');
+        
+        const isOn = card.classList.contains('is-on-' + themeColor) || 
+                     (pBtn && (pBtn.classList.contains('active-' + themeColor) || pBtn.classList.contains('active-blue') || pBtn.classList.contains('active-amber'))) ||
+                     (toggle && (toggle.classList.contains('active-' + themeColor) || toggle.classList.contains('active-blue') || toggle.classList.contains('active-amber')));
+        
+        if (isOn) {
+          if (pBtn) pBtn.className = 'power-btn';
+          if (toggle) toggle.className = 'ios-toggle';
+          card.classList.remove('is-on-blue', 'is-on-amber', 'is-on-' + themeColor);
+          if (meta) {
+            if (!meta.dataset.onText) meta.dataset.onText = meta.textContent;
+            const parts = meta.dataset.onText.split('·');
+            meta.textContent = parts[0].trim() + ' · Off';
+          }
+        } else {
+          if (pBtn) pBtn.className = 'power-btn active-' + themeColor;
+          if (toggle) toggle.className = 'ios-toggle active-' + themeColor;
+          card.classList.add('is-on-' + themeColor);
+          if (meta && meta.dataset.onText) {
+            meta.textContent = meta.dataset.onText;
+          }
+        }
+      }
+
+      // Lock toggle
+      function toggleLockCard(card) {
+        const pill = card.querySelector('.status-pill-subtle');
+        const iconBox = card.querySelector('.device-icon-box');
+        if (!pill) return;
+        
+        const isLocked = pill.innerText.includes('Locked');
+        if (isLocked) {
+          pill.innerHTML = `<span>Unlocked</span>`;
+          pill.style.color = '#FF9F0A';
+          iconBox.style.color = '#FF9F0A';
+        } else {
+          pill.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="sf-icon"><polyline points="20 6 9 17 4 12" /></svg><span>Locked</span>`;
+          pill.style.color = 'var(--color-system-green)';
+          iconBox.style.color = 'var(--color-system-green)';
+        }
+      }
+
+      // Scene button toggle (4 in a row)
+      function toggleScene(button) {
+        const grid = button.closest('.scenes-grid-4');
+        if (!grid) return;
+        grid.querySelectorAll('.scene-button').forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-pressed', 'false');
+        });
+        button.classList.add('active');
+        button.setAttribute('aria-pressed', 'true');
+      }
+
+      // Tab switcher
+      function switchTab(btn) {
+        const bar = btn.closest('.floating-tab-bar');
+        if (!bar) return;
+        bar.querySelectorAll('.tab-item').forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+      }
+
+      // iOS Native Context Menus & Home Switching
+      let activeHome = 'Apartment';
+
+      function closeAllMenus() {
+        const menus = document.querySelectorAll('.ios-native-menu');
+        menus.forEach(m => m.classList.remove('open'));
+        const backdrop = document.getElementById('ios-menu-backdrop');
+        if (backdrop) backdrop.classList.remove('active');
+        const triggers = document.querySelectorAll('#home-switcher-trigger, #add-btn-trigger, #options-btn-trigger');
+        triggers.forEach(t => t.classList.remove('active-state'));
+      }
+
+      function toggleMenu(menuId, triggerId, event) {
+        if (event) {
+          event.stopPropagation();
+          event.preventDefault();
+        }
+        const menu = document.getElementById(menuId);
+        const trigger = document.getElementById(triggerId);
+        if (!menu) return;
+        const isOpen = menu.classList.contains('open');
+        closeAllMenus();
+        if (!isOpen) {
+          menu.classList.add('open');
+          if (trigger) trigger.classList.add('active-state');
+          const backdrop = document.getElementById('ios-menu-backdrop');
+          if (backdrop) backdrop.classList.add('active');
+        }
+      }
+
+      function toggleHomeMenu(event) {
+        toggleMenu('home-menu-popover', 'home-switcher-trigger', event);
+      }
+
+      function toggleAddMenu(event) {
+        toggleMenu('add-menu-popover', 'add-btn-trigger', event);
+      }
+
+      function toggleOptionsMenu(event) {
+        toggleMenu('options-menu-popover', 'options-btn-trigger', event);
+      }
+
+      function selectHome(name) {
+        activeHome = name;
+        const switcherBtn = document.getElementById('home-switcher-trigger');
+        if (switcherBtn) {
+          const span = switcherBtn.querySelector('span');
+          if (span) span.textContent = name;
+        }
+
+        const checkApt = document.querySelector('.check-apartment');
+        const checkCountry = document.querySelector('.check-country');
+        const secRowLabel = document.getElementById('secondary-home-label');
+        const summaryHeadline = document.querySelector('.summary-headline');
+
+        if (name === 'Country house') {
+          if (checkApt) checkApt.style.display = 'none';
+          if (checkCountry) checkCountry.style.display = 'block';
+          if (secRowLabel) {
+            secRowLabel.innerHTML = '<span>Apartment · Primary residence</span>';
+          }
+          if (summaryHeadline) {
+            summaryHeadline.textContent = "Everything's fine at Country house";
+          }
+        } else {
+          if (checkApt) checkApt.style.display = 'block';
+          if (checkCountry) checkCountry.style.display = 'none';
+          if (secRowLabel) {
+            secRowLabel.innerHTML = '<span>Country house · Door sensor battery low</span><span class="alert-dot-orange" aria-hidden="true"></span>';
+          }
+          if (summaryHeadline) {
+            summaryHeadline.textContent = "Everything's fine at home";
+          }
+        }
+        closeAllMenus();
+      }
+
+      function toggleSecondaryHome() {
+        selectHome(activeHome === 'Apartment' ? 'Country house' : 'Apartment');
+      }
+
+      function handleItemAdd(itemType) {
+        closeAllMenus();
+        const banner = document.getElementById('edit-mode-banner');
+        if (banner) {
+          const bannerText = banner.querySelector('span');
+          if (bannerText) {
+            bannerText.textContent = itemType === 'New Home' ? 'New Home setup initiated' : itemType + ' flow initiated';
+          }
+          banner.classList.add('active');
+          setTimeout(() => {
+            banner.classList.remove('active');
+            if (bannerText) bannerText.textContent = 'Customizing Home Screen';
+          }, 2400);
+        }
+      }
+
+      // Reorder Sections Modal
+      const reorderModal = document.getElementById('reorder-modal');
+
+      function openReorderModal() {
+        closeAllMenus();
+        if (reorderModal) {
+          reorderModal.classList.add('open');
+        }
+      }
+
+      function closeReorderModal() {
+        if (reorderModal) {
+          reorderModal.classList.remove('open');
+        }
+      }
+
+      // Edit Home Screen Mode
+      function startEditHomeScreen() {
+        closeAllMenus();
+        toggleEditMode(true);
+      }
+
+      function toggleEditMode(enable) {
+        const banner = document.getElementById('edit-mode-banner');
+        if (banner) {
+          if (enable) {
+            banner.classList.add('active');
+          } else {
+            banner.classList.remove('active');
+          }
+        }
+      }
+
+      // Close menus on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAllMenus();
+      });
+
+      function handleStartCleaning(btn) {
+        btn.textContent = 'Started ✓';
+        btn.style.background = 'var(--color-system-green)';
+        btn.style.boxShadow = '0 4px 14px rgba(48, 209, 88, 0.4)';
+        setTimeout(() => {
+          const card = btn.closest('.suggestion-card');
+          if (card) {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            setTimeout(() => card.style.display = 'none', 400);
+          }
+        }, 800);
+      }
+
+      function dismissCard(btn) {
+        const card = btn.closest('.suggestion-card');
+        if (card) {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.94)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 250);
+        }
+      }
+    </script>
+  </body>
+</html>

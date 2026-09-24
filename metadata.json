@@ -1,0 +1,8 @@
+{
+  "name": "iOS Smart Home Concept",
+  "description": "High-fidelity iOS home screen mockup for a smart home app concept with SF Symbols and liquid glass UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
